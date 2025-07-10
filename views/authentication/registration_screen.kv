@@ -1,0 +1,48 @@
+<RegistrationScreen@MDScreen>:
+    name: "registration"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(24)
+        spacing: dp(24)
+        size_hint_y: None
+        height: self.minimum_height
+        pos_hint: {"top": 1}
+
+        FMTitle:
+            use_logo: True
+            title: "Sign Up"
+            subtitle: "We are always welcoming to new users!"
+            title_style: "H5"
+            subtitle_style: "Body1"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(12)
+            size_hint_y: None
+            height: self.minimum_height
+            padding: 0
+
+            FMTextField:
+                label: "Name"
+
+            FMTextField:
+                label: "Email"
+
+            FMTextField:
+                label: "Password"
+                is_password: True
+
+        FMButton:
+            label: "Sign Up"
+            size_hint_x: 1
+            on_release: app.controllers.authentication.registration.register()
+
+        FMSeparator:
+            label: "OR"
+
+        FMLink:
+            text_value: "Already have an account? Click here"
+            target_screen: "login"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "y": 0.05}

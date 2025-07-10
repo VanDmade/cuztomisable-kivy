@@ -1,0 +1,30 @@
+MDScreen:
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(24)
+        spacing: dp(24)
+        size_hint_y: None
+        height: self.minimum_height
+        pos_hint: {"top": 1}
+
+        FMTitle:
+            use_logo: True
+            title: "Multi-Factor Authentication"
+            subtitle: "The code was sent! Please enter it below once you receive it."
+            title_style: "H5"
+            subtitle_style: "Body1"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(12)
+            size_hint_y: None
+            height: self.minimum_height
+            padding: 0
+
+            FMTextField:
+                label: "Code"
+
+        FMButton:
+            label: "Verify"
+            size_hint_x: 1

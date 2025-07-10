@@ -1,0 +1,19 @@
+<FMNotification>:
+    size_hint_x: 1
+    size_hint_y: None
+    height: self.minimum_height
+    pos_hint: {"center_x": 0.5, "y": 0}
+    padding: dp(8)
+    orientation: "vertical"
+    md_bg_color: root.background_color
+    opacity: 1 if root.visible else 0
+    elevation: 4
+
+    MDLabel:
+        text: root.text
+        halign: "center"
+        theme_text_color: "Custom"
+        text_color: 1, 1, 1, 1
+        font_style: "Body1"
+        size_hint_y: None
+        height: self.texture_size[1]

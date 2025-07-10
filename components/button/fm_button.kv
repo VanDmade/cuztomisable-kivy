@@ -1,0 +1,7 @@
+<FMButton>:
+    text: root.label
+    font_size: f"{root.font_size_sp}sp"
+    height: dp(56)
+    padding: dp(0), dp(12)
+    elevation: 1
+    on_release: root.on_press_callback() if root.on_press_callback else None

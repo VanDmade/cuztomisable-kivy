@@ -1,0 +1,63 @@
+<LoginScreen@MDScreen>:
+    name: "login"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(24)
+        spacing: dp(24)
+        size_hint_y: None
+        height: self.minimum_height
+        pos_hint: {"top": 1}
+
+        FMTitle:
+            use_logo: True
+            title: app.T("login.title")
+            subtitle: app.T("login.subtitle")
+            title_style: "H5"
+            subtitle_style: "Body1"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(12)
+            size_hint_y: None
+            height: self.minimum_height
+            padding: 0
+
+            FMTextField:
+                id: username
+                label: app.T("login.inputs.username")
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(4)
+                size_hint_y: None
+                height: self.minimum_height
+
+                FMTextField:
+                    id: password
+                    label: app.T("login.inputs.password")
+                    is_password: True
+
+                AnchorLayout:
+                    anchor_x: "right"
+                    size_hint_y: None
+                    height: dp(32)
+
+                    FMLink:
+                        text_value: app.T("login.forgot_password")
+                        target_screen: "forgot"
+                        halign: "right"
+
+        FMButton:
+            label: app.T("login.button")
+            size_hint_x: 1
+            on_release: app.controllers.authentication.login.login()
+
+        FMSeparator:
+            label: app.T("login.separator")
+
+        FMLink:
+            text_value: app.T("login.register")
+            target_screen: "registration"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "y": 0.05}
