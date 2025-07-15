@@ -26,6 +26,7 @@
             FMTextField:
                 id: username
                 label: app.T("login.inputs.username")
+                disabled: app.controllers.authentication.login.submitting
 
             MDBoxLayout:
                 orientation: "vertical"
@@ -37,6 +38,7 @@
                     id: password
                     label: app.T("login.inputs.password")
                     is_password: True
+                    disabled: app.controllers.authentication.login.submitting
 
                 AnchorLayout:
                     anchor_x: "right"
@@ -45,12 +47,13 @@
 
                     FMLink:
                         text_value: app.T("login.forgot_password")
-                        target_screen: "forgot"
+                        target_screen: "password_forgot"
                         halign: "right"
 
         FMButton:
             label: app.T("login.button")
             size_hint_x: 1
+            disabled: app.controllers.authentication.login.submitting
             on_release: app.controllers.authentication.login.login()
 
         FMSeparator:

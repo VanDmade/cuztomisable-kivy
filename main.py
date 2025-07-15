@@ -26,10 +26,10 @@ class MyApp(MDApp):
         self.controllers = load_all_controllers(self)
         # Load main app.kv which contains ScreenManager
         root = Builder.load_file("app.kv")
-        self.api = ApiManager(root)
-        self.auth = AuthManager(root)
         self.nav = NavigationManager(root.ids.screen_manager)
         self.notifier = root.ids.notifier
+        self.api = ApiManager(self)
+        self.auth = AuthManager(self)
         return root;
 
 MyApp().run()

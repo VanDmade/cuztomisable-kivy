@@ -1,4 +1,5 @@
-MDScreen:
+<PasswordVerifyScreen@MDScreen>:
+    name: "password_verify"
 
     MDBoxLayout:
         orientation: "vertical"
@@ -10,8 +11,8 @@ MDScreen:
 
         FMTitle:
             use_logo: True
-            title: "Reset Password"
-            subtitle: "Enter the email address associated with your account."
+            title: app.T("password.verify.title")
+            subtitle: app.T("password.verify.subtitle")
             title_style: "H5"
             subtitle_style: "Body1"
 
@@ -23,8 +24,12 @@ MDScreen:
             padding: 0
 
             FMTextField:
-                label: "Code"
+                id: code
+                label: app.T("password.verify.inputs.code")
+                disabled: app.controllers.authentication.password.submitting
 
         FMButton:
-            label: "Verify"
+            label: app.T("password.verify.button")
             size_hint_x: 1
+            disabled: app.controllers.authentication.password.submitting
+            on_release: app.controllers.authentication.password.verify()

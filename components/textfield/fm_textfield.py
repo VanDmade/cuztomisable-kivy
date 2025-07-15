@@ -8,6 +8,7 @@ class FMTextField(MDTextField):
     is_password = BooleanProperty(False)
     color_name = StringProperty("primary")
     form_key = StringProperty("")
+    disabled = BooleanProperty(False)
 
     def on_kv_post(self, base_widget):
         color = COLORS.get(self.color_name, COLORS["primary"])

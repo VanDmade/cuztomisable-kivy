@@ -1,4 +1,5 @@
-MDScreen:
+<PasswordResetScreen@MDScreen>:
+    name: "password_reset"
 
     MDBoxLayout:
         orientation: "vertical"
@@ -10,8 +11,8 @@ MDScreen:
 
         FMTitle:
             use_logo: True
-            title: "Reset Password"
-            subtitle: "Enter your new password"
+            title: app.T("password.reset.title")
+            subtitle: app.T("password.reset.subtitle")
             title_style: "H5"
             subtitle_style: "Body1"
 
@@ -23,8 +24,13 @@ MDScreen:
             padding: 0
 
             FMTextField:
-                label: "New Password"
+                id: password
+                label: app.T("password.reset.inputs.password")
+                is_password: True
+                disabled: app.controllers.authentication.password.submitting
 
         FMButton:
-            label: "Save"
+            label: app.T("password.reset.button")
             size_hint_x: 1
+            disabled: app.controllers.authentication.password.submitting
+            on_release: app.controllers.authentication.password.reset()

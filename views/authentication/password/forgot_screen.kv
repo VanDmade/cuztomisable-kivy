@@ -1,5 +1,5 @@
-<ForgotScreen@MDScreen>:
-    name: "forgot"
+<PasswordForgotScreen@MDScreen>:
+    name: "password_forgot"
 
     MDBoxLayout:
         orientation: "vertical"
@@ -11,8 +11,8 @@
 
         FMTitle:
             use_logo: True
-            title: "Forgot Password"
-            subtitle: "Enter the email address associated with your account"
+            title: app.T("password.forgot.title")
+            subtitle: app.T("password.forgot.subtitle")
             title_style: "H5"
             subtitle_style: "Body1"
 
@@ -24,18 +24,21 @@
             padding: 0
 
             FMTextField:
-                label: "Email"
+                id: username
+                label: app.T("password.forgot.inputs.username")
+                disabled: app.controllers.authentication.password.submitting
 
         FMButton:
-            label: "Send"
+            label: app.T("password.forgot.button")
             size_hint_x: 1
+            disabled: app.controllers.authentication.password.submitting
             on_release: app.controllers.authentication.password.forgot()
 
         FMSeparator:
-            label: "OR"
+            label: app.T("password.forgot.separator")
 
         FMLink:
-            text_value: "Remember your password? Click here"
+            text_value: app.T("password.forgot.back_to_login")
             target_screen: "login"
             halign: "center"
             pos_hint: {"center_x": 0.5, "y": 0.05}

@@ -8,11 +8,10 @@
         size_hint_y: None
         height: self.minimum_height
         pos_hint: {"top": 1}
-
         FMTitle:
             use_logo: True
-            title: "Sign Up"
-            subtitle: "We are always welcoming to new users!"
+            title: app.T("registration.title")
+            subtitle: app.T("registration.subtitle")
             title_style: "H5"
             subtitle_style: "Body1"
 
@@ -24,25 +23,29 @@
             padding: 0
 
             FMTextField:
-                label: "Name"
+                label: app.T("registration.inputs.name")
+                disabled: app.controllers.authentication.registration.submitting
 
             FMTextField:
-                label: "Email"
+                label: app.T("registration.inputs.email")
+                disabled: app.controllers.authentication.registration.submitting
 
             FMTextField:
-                label: "Password"
+                label: app.T("registration.inputs.password")
                 is_password: True
+                disabled: app.controllers.authentication.registration.submitting
 
         FMButton:
-            label: "Sign Up"
+            label: app.T("registration.button")
             size_hint_x: 1
+            disabled: app.controllers.authentication.registration.submitting
             on_release: app.controllers.authentication.registration.register()
 
         FMSeparator:
-            label: "OR"
+            label: app.T("registration.separator")
 
         FMLink:
-            text_value: "Already have an account? Click here"
+            text_value: app.T("registration.back_to_login")
             target_screen: "login"
             halign: "center"
             pos_hint: {"center_x": 0.5, "y": 0.05}
