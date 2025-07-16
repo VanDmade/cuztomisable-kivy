@@ -23,6 +23,6 @@ def T(path, default=""):
             if key.isdigit():
                 key = int(key)
             data = data[key]
-        return "-"+data+"-"
+        return data
     except (KeyError, IndexError, TypeError):
         return default

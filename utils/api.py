@@ -27,13 +27,15 @@ class ApiManager:
                 res_data = response.json()
                 def handle(*_):
                     if code != 200:
-                        # Default functionality when some error occurs
-                        self.app.notifier.show(res_data.get('message', 'Something went wrong'), "danger")
+                        # Checks for form error, errors will show beneath the fields
+                        if code != 422:
+                            # Default functionality when some error occurs
+                            self.app.notifier.show(res_data.get('message', 'Something went wrong'), "danger")
                         if callback:
-                            callback(False)
+                            callback(res_data, True)
                     else:
                         if callback:
-                            callback(res_data)
+                            callback(res_data, False)
                 Clock.schedule_once(handle)
             except requests.exceptions.RequestException as e:
                 Clock.schedule_once(lambda *_: self.app.notifier.show(str(e), "danger"))

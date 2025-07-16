@@ -8,6 +8,7 @@
         size_hint_y: None
         height: self.minimum_height
         pos_hint: {"top": 1}
+
         FMTitle:
             use_logo: True
             title: app.T("registration.title")
@@ -17,20 +18,29 @@
 
         MDBoxLayout:
             orientation: "vertical"
-            spacing: dp(12)
+            spacing: dp(20)
             size_hint_y: None
             height: self.minimum_height
-            padding: 0
+            padding: [0, 0, 0, dp(16)]
 
             FMTextField:
+                id: name
                 label: app.T("registration.inputs.name")
                 disabled: app.controllers.authentication.registration.submitting
 
             FMTextField:
+                id: email
                 label: app.T("registration.inputs.email")
                 disabled: app.controllers.authentication.registration.submitting
 
+            FMPhone:
+                id: phone
+                label: app.T("registration.inputs.phone")
+                disabled: app.controllers.authentication.registration.submitting
+                show_country_code: False
+
             FMTextField:
+                id: password
                 label: app.T("registration.inputs.password")
                 is_password: True
                 disabled: app.controllers.authentication.registration.submitting

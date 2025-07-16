@@ -18,8 +18,9 @@ STRINGS = {
             "name": "Name",
             "email": "Email",
             "password": "Password",
+            "phone": "Phone Number",
         },
-        "button": "Login",
+        "button": "Register",
         "separator": "OR",
         "back_to_login": "Already have an account? Click here"
     },
