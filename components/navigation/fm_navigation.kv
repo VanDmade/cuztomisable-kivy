@@ -1,0 +1,92 @@
+<FMNavigation>:
+    orientation: "vertical"
+    size_hint_x: 1
+
+    # The drop-up box, starts hidden
+    BoxLayout:
+        id: navigation_dropup
+        orientation: "vertical"
+        size_hint_y: None
+        size_hint_x: 0.93
+        pos_hint: {"center_x": 0.5}
+        opacity: 0
+        height: 0
+        y: dp(56)
+
+        canvas.before:
+            Color:
+                rgba: root.dropup_color
+            RoundedRectangle:
+                radius: [12, 12, 0, 0]
+                pos: self.pos
+                size: self.size
+
+        MDLabel:
+            text: "Option 1"
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            halign: "center"
+
+        MDSeparator:
+            height: dp(2)
+
+        MDLabel:
+            text: "Option 2"
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            halign: "center"
+
+        MDSeparator:
+            height: dp(2)
+
+        MDLabel:
+            text: "Option 3"
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            halign: "center"
+
+    MDCard:
+        id: navigation_bottom
+        size_hint_x: 1
+        size_hint_y: None
+        height: dp(56)
+        elevation: 0.8
+        radius: [0, 0, 0, 0]
+        md_bg_color: 1, 1, 1, 1
+
+        MDBoxLayout:
+            id: "navigation"
+            orientation: "horizontal"
+            size_hint_x: 1
+            size_hint_y: None
+            padding: [0, 0, 0, 0]
+            pos_hint: {"x": 0, "y": 0}
+
+            Widget:
+
+            MDIconButton:
+                icon: "home"
+                theme_icon_color: "Custom"
+                icon_color: 0.7, 0.7, 0.7, 1
+                icon_size: "32sp"
+                on_release: app.nav.go_to("portal")
+                ripple_scale: 0.6
+                ripple_duration: 0.05
+                ripple_alpha: 0.2
+
+            Widget:
+
+            MDIconButton:
+                icon: "cog"
+                theme_icon_color: "Custom"
+                icon_color: 0.7, 0.7, 0.7, 1
+                icon_size: "32sp"
+                on_release: app.nav.go_to("setting")
+                ripple_scale: 0.6
+                ripple_duration: 0.05
+                ripple_alpha: 0.2
+
+            Widget:

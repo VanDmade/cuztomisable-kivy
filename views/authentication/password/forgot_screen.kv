@@ -38,6 +38,12 @@
             label: app.T("password.forgot.separator")
 
         FMLink:
+            text_value: app.T("password.forgot.already_have_code")
+            target_screen: "password_verify"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "y": 0.05}
+
+        FMLink:
             text_value: app.T("password.forgot.back_to_login")
             target_screen: "login"
             halign: "center"

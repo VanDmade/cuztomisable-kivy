@@ -24,13 +24,26 @@
             padding: 0
 
             FMTextField:
-                id: password
+                id: reset_password
                 label: app.T("password.reset.inputs.password")
                 is_password: True
                 disabled: app.controllers.authentication.password.submitting
+                on_text: reset_password_requirements.password = self.text
 
-        FMButton:
-            label: app.T("password.reset.button")
-            size_hint_x: 1
-            disabled: app.controllers.authentication.password.submitting
-            on_release: app.controllers.authentication.password.reset()
+            PasswordRequirements:
+                id: reset_password_requirements
+
+            FMButton:
+                label: app.T("password.reset.button")
+                size_hint_x: 1
+                disabled: not reset_password_requirements.is_valid or app.controllers.authentication.password.submitting
+                on_release: app.controllers.authentication.password.reset()
+
+        FMSeparator:
+            label: app.T("password.reset.separator")
+
+        FMLink:
+            text_value: app.T("password.reset.back_to_login")
+            target_screen: "login"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "y": 0.05}

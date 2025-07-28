@@ -1,4 +1,5 @@
-MDScreen:
+<MfaSendScreen@MDScreen>:
+    name: "mfa_send"
 
     MDBoxLayout:
         orientation: "vertical"
@@ -10,11 +11,33 @@ MDScreen:
 
         FMTitle:
             use_logo: True
-            title: "Multi-Factor Authentication"
-            subtitle: "Enter the email address associated with your account."
+            title: app.T("mfa.send.title")
+            subtitle: app.T("mfa.send.subtitle")
             title_style: "H5"
             subtitle_style: "Body1"
 
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(4)
+            size_hint_y: None
+            height: self.minimum_height
+
+            FMCheckbox:
+                id: email_checkbox
+                text: "Email"
+                active: True
+                on_active: phone_checkbox.active = False if self.active else True
+                disabled: app.controllers.authentication.mfa.submitting
+
+            FMCheckbox:
+                id: phone_checkbox
+                text: "Phone"
+                active: False
+                on_active: email_checkbox.active = False if self.active else True
+                disabled: app.controllers.authentication.mfa.submitting
+
         FMButton:
-            label: "Send"
+            label: app.T("mfa.send.button")
             size_hint_x: 1
+            disabled: app.controllers.authentication.mfa.submitting
+            on_release: app.controllers.authentication.mfa.send()

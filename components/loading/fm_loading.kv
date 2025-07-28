@@ -1,0 +1,14 @@
+<FMLoading>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1 if self.opacity > 0 else 0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDSpinner:
+        id: spinner
+        size_hint: None, None
+        size: dp(92), dp(92)
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        line_width: 6

@@ -14,20 +14,16 @@ class LoginController(BaseController, EventDispatcher):
 
         def handle_response(response, error = False):
             self.submitting = False
-            if error:
-                if "errors" in response:
-                    for key, value in response["errors"].items():
-                        if self.item(key) is not None:
-                            self.item(key).set_error(value[0])
-                return
+            if error: return self.form_errors(response)
             if response.get("multi_factor_authentication"):
-                self.app.nav.go_to("mfa")
+                self.app.storage.write("mfa.token", response['token'], file="auth.json")
+                self.app.nav.go_to("mfa_send")
             else:
                 self.app.auth.set_data(response)
                 self.app.nav.go_to("portal")
 
-        username = self.form("username")
-        password = self.form("password")
+        username = self.form_value("username")
+        password = self.form_value("password")
         # Verifies the username and password exist
         if not username or not password:
             self.app.notifier.show("Username and password are required.", "danger")
@@ -37,5 +33,10 @@ class LoginController(BaseController, EventDispatcher):
                 "POST",
                 "login",
                 {"username": username, "password": password},
-                callback=handle_response
+                callback=handle_response,
+                require_auth=False
             )
+
+    def on_leave(self, screen_name=None):
+        self.form_item("username").text = ""
+        self.form_item("password").text = ""

@@ -1,61 +1,76 @@
 <RegistrationScreen@MDScreen>:
     name: "registration"
-
-    MDBoxLayout:
-        orientation: "vertical"
-        padding: dp(24)
-        spacing: dp(24)
-        size_hint_y: None
-        height: self.minimum_height
-        pos_hint: {"top": 1}
-
-        FMTitle:
-            use_logo: True
-            title: app.T("registration.title")
-            subtitle: app.T("registration.subtitle")
-            title_style: "H5"
-            subtitle_style: "Body1"
+    ScrollView:
+        id: registration_scroll_view
+        do_scroll_x: False
+        do_scroll_y: True
 
         MDBoxLayout:
             orientation: "vertical"
-            spacing: dp(20)
+            padding: dp(24)
+            spacing: dp(24)
             size_hint_y: None
             height: self.minimum_height
-            padding: [0, 0, 0, dp(16)]
+            pos_hint: {"top": 1}
 
-            FMTextField:
-                id: name
-                label: app.T("registration.inputs.name")
-                disabled: app.controllers.authentication.registration.submitting
+            FMTitle:
+                use_logo: True
+                title: app.T("registration.title")
+                subtitle: app.T("registration.subtitle")
+                title_style: "H5"
+                subtitle_style: "Body1"
 
-            FMTextField:
-                id: email
-                label: app.T("registration.inputs.email")
-                disabled: app.controllers.authentication.registration.submitting
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(20)
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [0, 0, 0, dp(0)]
 
-            FMPhone:
-                id: phone
-                label: app.T("registration.inputs.phone")
-                disabled: app.controllers.authentication.registration.submitting
-                show_country_code: False
+                FMTextField:
+                    id: name
+                    label: app.T("registration.inputs.name")
+                    disabled: app.controllers.authentication.registration.submitting
 
-            FMTextField:
-                id: password
-                label: app.T("registration.inputs.password")
-                is_password: True
-                disabled: app.controllers.authentication.registration.submitting
+                FMTextField:
+                    id: email
+                    label: app.T("registration.inputs.email")
+                    disabled: app.controllers.authentication.registration.submitting
 
-        FMButton:
-            label: app.T("registration.button")
-            size_hint_x: 1
-            disabled: app.controllers.authentication.registration.submitting
-            on_release: app.controllers.authentication.registration.register()
+                FMPhone:
+                    id: phone
+                    label: app.T("registration.inputs.phone")
+                    disabled: app.controllers.authentication.registration.submitting
+                    show_country_code: False
 
-        FMSeparator:
-            label: app.T("registration.separator")
+                MDBoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(12)
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: 0
 
-        FMLink:
-            text_value: app.T("registration.back_to_login")
-            target_screen: "login"
-            halign: "center"
-            pos_hint: {"center_x": 0.5, "y": 0.05}
+                    FMTextField:
+                        id: password
+                        label: app.T("registration.inputs.password")
+                        is_password: True
+                        disabled: app.controllers.authentication.registration.submitting
+                        on_text: register_password_requirements.password = self.text
+
+                    PasswordRequirements:
+                        id: register_password_requirements
+
+            FMButton:
+                label: app.T("registration.button")
+                size_hint_x: 1
+                disabled: not register_password_requirements.is_valid or app.controllers.authentication.registration.submitting
+                on_release: app.controllers.authentication.registration.register()
+
+            FMSeparator:
+                label: app.T("registration.separator")
+
+            FMLink:
+                text_value: app.T("registration.back_to_login")
+                target_screen: "login"
+                halign: "center"
+                pos_hint: {"center_x": 0.5, "y": 0.05}

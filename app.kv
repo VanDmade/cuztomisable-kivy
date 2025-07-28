@@ -1,14 +1,23 @@
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+
 FloatLayout:
 
     ScreenManager:
         id: screen_manager
+        transition: SlideTransition(duration=0.25)
 
         LoginScreen:
         RegistrationScreen:
         PasswordForgotScreen:
         PasswordVerifyScreen:
         PasswordResetScreen:
+        MfaSendScreen:
+        MfaVerifyScreen:
+
+        # Once Logged in
         PortalScreen:
+        ProfileScreen:
+        SettingScreen:
 
     AnchorLayout:
         anchor_x: "center"
@@ -17,3 +26,8 @@ FloatLayout:
         FMNotification:
             id: notifier
             auto_dismiss: True
+
+    FMLoading:
+        id: global_loading
+        opacity: 1
+        disabled: False

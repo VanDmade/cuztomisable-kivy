@@ -18,10 +18,9 @@
 
         MDBoxLayout:
             orientation: "vertical"
-            spacing: dp(12)
+            spacing: dp(4)
             size_hint_y: None
             height: self.minimum_height
-            padding: 0
 
             FMTextField:
                 id: code
@@ -33,3 +32,12 @@
             size_hint_x: 1
             disabled: app.controllers.authentication.password.submitting
             on_release: app.controllers.authentication.password.verify()
+
+        FMSeparator:
+            label: app.T("password.verify.separator")
+
+        FMLink:
+            text_value: app.T("password.verify.back_to_login")
+            target_screen: "login"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "y": 0.05}

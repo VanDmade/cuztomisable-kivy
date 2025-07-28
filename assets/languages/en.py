@@ -33,7 +33,8 @@ STRINGS = {
             },
             "button": "Send",
             "separator": "OR",
-            "back_to_login": "Remember your password? Click here"
+            "back_to_login": "Remember your password? Click here",
+            "already_have_code": "Already have a code? Click here"
         },
         "reset": {
             "title": "Reset Password",
@@ -41,6 +42,8 @@ STRINGS = {
             "inputs": {
                 "password": "New Password"
             },
+            "separator": "OR",
+            "back_to_login": "Go back to login and try again",
             "button": "Save"
         },
         "verify": {
@@ -49,11 +52,29 @@ STRINGS = {
             "inputs": {
                 "code": "Code"
             },
+            "separator": "OR",
+            "back_to_login": "Go back to login and try again",
+            "resend": "Resend the code",
             "button": "Verify"
         }
     },
     "mfa": {
-
+        "send": {
+            "title": "Account Verification",
+            "subtitle": "Choose how you'd like to receive your verification code",
+            "inputs": {
+                "username": "Email"
+            },
+            "button": "Send"
+        },
+        "verify": {
+            "title": "Account Verification",
+            "subtitle": "Enter the authentication code to complete verification",
+            "inputs": {
+                "code": "Code"
+            },
+            "button": "Verify"
+        }
     },
     "global": {
         "errors": {
